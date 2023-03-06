@@ -1,0 +1,47 @@
+@import '../../../app/styles/variables.scss';
+
+.wrapper {
+    background-color: $neutral10;
+    height: 100%;
+    width: 250px;
+    padding: 20px;
+}
+
+.menu {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    // menu_item
+    &_item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 18px;
+        width: 100%;
+        border-radius: 8px;
+        color: $neutral40;
+        text-decoration: none;
+        transition: 0.2s background-color, 0.2s color;
+        cursor: pointer;
+
+        &:hover {
+            color: $neutral90;
+        }
+
+        // menu_item__active
+        &__active {
+            color: $neutral90;
+            background-color: $primary50;
+
+            &:hover {
+                background-color: $primary30;
+            }
+
+            &:active {
+                background-color: $primary60;
+            }
+        }
+    }
+}
