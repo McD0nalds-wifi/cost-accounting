@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { FC, ReactNode } from 'react'
 
 import { Sidebar } from '../../../entities/sidebar'
 import style from './index.module.scss'
@@ -7,7 +7,7 @@ interface ILayoutProps {
     children: ReactNode
 }
 
-export const Layout: React.FC<ILayoutProps> = ({ children }) => {
+export const Layout: FC<ILayoutProps> = ({ children }) => {
     /* START - Get store values. */
     /* END - Get store values. */
 
@@ -20,7 +20,7 @@ export const Layout: React.FC<ILayoutProps> = ({ children }) => {
         <div className={style.wrapper}>
             <Sidebar />
 
-            {children}
+            <div className={style.content}>{children}</div>
         </div>
     )
 }

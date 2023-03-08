@@ -1,0 +1,53 @@
+@import '../../../app/styles/variables.scss';
+
+.wrapper {
+    margin-top: 40px;
+    border: 1px solid $lightgray01;
+    border-radius: 12px;
+    padding-bottom: 14px;
+    position: relative;
+    height: 286px;
+}
+
+.header {
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.filters {
+    display: flex;
+    align-items: center;
+    gap: 70px;
+}
+
+.category {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+
+    // category_item
+    &_item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    // category_color
+    &_color {
+        height: 8px;
+        width: 8px;
+        border-radius: 50%;
+    }
+}
+
+.period {
+    min-width: 164px;
+}
+
+.lineChart {
+    height: 200px;
+    width: 100%;
+    position: absolute;
+}

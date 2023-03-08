@@ -1,0 +1,49 @@
+@import '../../../app/styles/variables.scss';
+
+.wrapper {
+    position: relative;
+}
+
+.inputWrapper {
+    position: relative;
+}
+
+.input {
+    outline: none;
+    border-radius: 12px;
+    background-color: $lightgray02;
+    color: $darkblue;
+    border: 2px solid $lightgray02;
+    padding: 10px 40px 10px 10px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    transition: border-color 0.2s;
+    text-align: left;
+    cursor: pointer;
+
+    // input__placeholder
+    &__placeholder {
+        color: $darkGrayishBlue04;
+    }
+
+    &:disabled {
+        background-color: $lightgray01;
+        cursor: not-allowed;
+    }
+
+    &:focus {
+        border-color: $primary50;
+    }
+}
+
+.icon {
+    position: absolute;
+    top: 0px;
+    right: 18px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}

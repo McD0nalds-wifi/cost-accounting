@@ -1,0 +1,46 @@
+@import '../../../app/styles/variables.scss';
+
+.card {
+    padding: 24px 20px;
+    border-radius: 12px;
+    max-width: 220px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    // card__light
+    &__light {
+        background-color: $lightgray01;
+    }
+
+    // card__dark
+    &__dark {
+        background-color: $darkGrayishBlue02;
+    }
+}
+
+.icon {
+    height: 42px;
+    width: 42px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    // icon__light
+    &__light {
+        background-color: $lightGrayishRed;
+    }
+
+    // icon__dark
+    &__dark {
+        background-color: $darkGrayishBlue01;
+    }
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}

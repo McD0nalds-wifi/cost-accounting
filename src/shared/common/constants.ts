@@ -2,6 +2,22 @@ export const TOKEN_NAME = 'token'
 
 export const COLORS = {
     inherit: 'inherit',
+    darkGrayishBlue01: '#4e5257',
+    darkGrayishBlue02: '#363a3f',
+    darkGrayishBlue03: '#929eae',
+    darkGrayishBlue04: '#7b8592',
+    darkblue: '#1b212d',
+    brightYellow01: '#d3f169',
+    brightYellow02: '#c8ee44',
+    brightYellow03: '#b4d63d',
+    lightGrayishRed: '#ebe8e8',
+    grayishBlue: '#abb4c0',
+    lightgray01: '#f8f8f8',
+    lightgray02: '#fafafa',
+    darkModerateBlue: '#5243aa',
+    darkCyan: '#29a073',
+    lightGrayishBlue: '#f3f6f8',
+    // Deprecated
     white: '#ffffff',
     neutral10: '#fafafa',
     neutral20: '#d9d9d9',

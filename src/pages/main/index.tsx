@@ -1,9 +1,23 @@
-import Button from '../../shared/ui/button'
+import { routes } from '../../shared/common'
+import { Select, Typography } from '../../shared/ui'
+import { MoneyInfo } from '../../widgets/money-info'
+import { WorkingCapital } from '../../widgets/working-capital'
 
 const Main = () => {
     return (
         <div>
-            <Button type={'link'}>Кнопка</Button>
+            <Typography type={'heading3'} component={'h1'} color={'neutral90'}>
+                {routes.main.pageName}
+            </Typography>
+
+            <div style={{ marginTop: '40px', display: 'flex', gap: '40px' }}>
+                <div style={{ width: '100%' }}>
+                    <MoneyInfo />
+
+                    <WorkingCapital />
+                </div>
+                <div style={{ width: '360px', flexShrink: 0 }}></div>
+            </div>
         </div>
     )
 }
