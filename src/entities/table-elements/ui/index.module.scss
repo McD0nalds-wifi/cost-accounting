@@ -1,0 +1,25 @@
+@import '../../../app/styles/variables.scss';
+
+// START NameCell
+.nameCell {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    // nameCell_icon
+    &_icon {
+        border-radius: 8px;
+        height: 40px;
+        width: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    // nameCell_title
+    &_title {
+        display: flex;
+        flex-direction: column;
+    }
+}
+// END NameCell

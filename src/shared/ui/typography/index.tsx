@@ -27,6 +27,7 @@ interface ITypographyProps {
     color?: ColorsType | 'inherit' | 'transparent'
     cursor?: 'default' | 'pointer' | 'inherit'
     fontWeight?: string
+    isUppercase?: boolean
     children: ReactNode
     onClick?: () => void
 }
@@ -39,6 +40,7 @@ const Typography = ({
     color = 'neutral100',
     cursor = 'inherit',
     fontWeight,
+    isUppercase,
     children,
     onClick,
 }: ITypographyProps) => {
@@ -52,6 +54,7 @@ const Typography = ({
                 color: color === 'inherit' || color === 'transparent' ? color : COLORS[color],
                 cursor: cursor,
                 fontWeight,
+                textTransform: isUppercase ? 'uppercase' : 'none',
                 ...styles,
             }}
             onClick={onClick}

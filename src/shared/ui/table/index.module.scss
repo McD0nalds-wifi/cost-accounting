@@ -1,0 +1,27 @@
+@import '../../../app/styles/variables.scss';
+
+.columns {
+    display: flex;
+    align-items: center;
+}
+
+.dataSource {
+    margin-top: 22px;
+
+    // dataSource_column
+    &_column {
+        display: flex;
+        align-items: center;
+        padding: 12px 0px;
+        border-bottom: 1px solid $lightgray01;
+
+        &:first-child {
+            padding: 0px 0px 12px 0px;
+        }
+
+        &:last-child {
+            border-bottom: none;
+            padding: 12px 0px 0px 0px;
+        }
+    }
+}

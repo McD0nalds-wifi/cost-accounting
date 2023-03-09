@@ -1,9 +1,9 @@
 import { FC } from 'react'
 
 import { ResponsiveLine } from '@nivo/line'
-import { Link, useLocation } from 'react-router-dom'
 
 import { COLORS } from '../../../shared/common'
+import { getAmountInRubles } from '../../../shared/common/util'
 import Typography from '../../../shared/ui/typography'
 import style from './index.module.scss'
 
@@ -16,31 +16,6 @@ interface ILineChartItem {
 interface ILineChartProps {
     items: Array<ILineChartItem>
 }
-
-const data = [
-    {
-        id: 'income',
-        color: '#29A073',
-        data: [
-            { x: '2023-01-01', y: 600 },
-            { x: '2023-01-02', y: 200 },
-            { x: '2023-01-05', y: 1200 },
-            { x: '2023-01-07', y: 700 },
-            { x: '2023-01-09', y: 800 },
-        ],
-    },
-    {
-        id: 'expenses',
-        color: '#c8ee44',
-        data: [
-            { x: '2023-01-01', y: 600 },
-            { x: '2023-01-02', y: 200 },
-            { x: '2023-01-05', y: 1200 },
-            { x: '2023-01-07', y: 700 },
-            { x: '2023-01-09', y: 800 },
-        ],
-    },
-]
 
 export const LineChart: FC<ILineChartProps> = ({ items }) => {
     /* START - Get store values. */
@@ -62,21 +37,15 @@ export const LineChart: FC<ILineChartProps> = ({ items }) => {
                 format: '%Y-%m-%d',
                 useUTC: false,
                 precision: 'day',
-                // max: 'auto',
-                // min: 'auto',
             }}
             xFormat={'time:%Y-%m-%d'}
             yScale={{
                 type: 'linear',
                 stacked: false,
             }}
-            yFormat={(value) =>
-                `${Number(value).toLocaleString('ru-RU', {
-                    minimumFractionDigits: 2,
-                })} ₽`
-            }
+            yFormat={(value) => getAmountInRubles(Number(value))}
             axisLeft={{
-                format: (value) => `${Number(value).toLocaleString('ru-RU')} ₽`,
+                format: (value) => getAmountInRubles(Number(value), 0),
                 tickSize: 0,
                 tickPadding: 14,
             }}

@@ -33,14 +33,14 @@
         // menu_item__active
         &__active {
             color: $darkblue;
-            background-color: $brightYellow02;
+            background-color: $primary50;
 
             &:hover {
-                background-color: $brightYellow01;
+                background-color: $primary30;
             }
 
             &:active {
-                background-color: $brightYellow03;
+                background-color: $primary70;
             }
         }
     }

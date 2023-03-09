@@ -37,14 +37,14 @@
     // button__primary
     &__primary {
         background-color: $primary50;
-        color: $neutral90;
+        color: $darkblue;
 
         &:hover {
-            background-color: $primary20;
+            background-color: $primary30;
         }
 
         &:active {
-            background-color: $primary80;
+            background-color: $primary70;
         }
 
         &:disabled {
@@ -81,15 +81,15 @@
     // button__link
     &__link {
         background-color: transparent;
-        color: $primary50;
+        color: $secondary50;
         padding: 0px;
 
         &:hover {
-            color: $primary40;
+            color: $secondary30;
         }
 
         &:active {
-            color: $primary80;
+            color: $secondary70;
         }
 
         &:disabled {

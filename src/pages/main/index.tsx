@@ -1,6 +1,7 @@
 import { routes } from '../../shared/common'
 import { Select, Typography } from '../../shared/ui'
 import { MoneyInfo } from '../../widgets/money-info'
+import { RecentTransactions } from '../../widgets/recent-transactions'
 import { WorkingCapital } from '../../widgets/working-capital'
 
 const Main = () => {
@@ -15,6 +16,8 @@ const Main = () => {
                     <MoneyInfo />
 
                     <WorkingCapital />
+
+                    <RecentTransactions />
                 </div>
                 <div style={{ width: '360px', flexShrink: 0 }}></div>
             </div>

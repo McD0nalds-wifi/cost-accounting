@@ -31,7 +31,7 @@ export const WorkingCapital = () => {
                 <div className={style.filters}>
                     <div className={style.category}>
                         <div className={style.category_item}>
-                            <div className={style.category_color} style={{ backgroundColor: COLORS.darkCyan }} />
+                            <div className={style.category_color} style={{ backgroundColor: COLORS.secondary50 }} />
 
                             <Typography type={'caption'} color={'darkblue'}>
                                 Доход
@@ -39,7 +39,7 @@ export const WorkingCapital = () => {
                         </div>
 
                         <div className={style.category_item}>
-                            <div className={style.category_color} style={{ backgroundColor: COLORS.brightYellow02 }} />
+                            <div className={style.category_color} style={{ backgroundColor: COLORS.primary50 }} />
 
                             <Typography type={'caption'} color={'darkblue'}>
                                 Расходы
@@ -64,7 +64,7 @@ export const WorkingCapital = () => {
                     items={[
                         {
                             id: 'fake corp. A',
-                            color: COLORS.brightYellow02,
+                            color: COLORS.primary50,
                             data: [
                                 { x: '2018-01-01', y: 7 },
                                 { x: '2018-01-02', y: 5 },
@@ -74,7 +74,7 @@ export const WorkingCapital = () => {
                         },
                         {
                             id: 'fake corp. B',
-                            color: COLORS.darkCyan,
+                            color: COLORS.secondary50,
                             data: [
                                 { x: '2018-01-04', y: 14 },
                                 { x: '2018-01-05', y: 14 },
