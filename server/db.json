@@ -1,3 +1,63 @@
 {
-    
+    "user": {
+        "balance": 154200.21,
+        "spending": 2500.8,
+        "saved": 5500.25
+    },
+    "transactions": [
+        {
+            "id": "1",
+            "name": "Яндекс подписка",
+            "business": "Yandex Inc.",
+            "category": "subscriptions",
+            "type": "expenses",
+            "amount": 299,
+            "date": 1677660803000
+        },
+        {
+            "id": "2",
+            "name": "Вкусвил",
+            "business": "vkusvill",
+            "category": "supermarkets",
+            "type": "expenses",
+            "amount": 2481.87,
+            "date": 1677687743000
+        },
+        {
+            "id": "3",
+            "name": "Zara Home",
+            "business": "zara",
+            "category": "everything_for_home",
+            "type": "expenses",
+            "amount": 5600,
+            "date": 1677755123000
+        },
+        {
+            "id": "4",
+            "name": "Газпром",
+            "business": "gazprom",
+            "category": "transport",
+            "type": "expenses",
+            "amount": 2000,
+            "date": 1677863123000
+        },
+        {
+            "id": "5",
+            "name": "Работа",
+            "business": "work",
+            "category": "salary",
+            "type": "income",
+            "amount": 80000,
+            "date": 1677687743000
+        },
+        {
+            "id": "6",
+            "name": "Перевод",
+            "business": "family",
+            "category": "transfers",
+            "type": "income",
+            "amount": 5000,
+            "date": 1677863123000
+        }
+    ]
 }

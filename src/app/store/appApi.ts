@@ -22,7 +22,7 @@ export interface IError {
 
 export const APP_REDUCER_PATH = 'app'
 
-export const SERVER_API_URL = 'http://localhost:5000/'
+export const SERVER_API_URL = 'http://localhost:3004/'
 
 const isFetchBaseQueryErrorType = (error: any): error is FetchBaseQueryError => 'status' in error
 

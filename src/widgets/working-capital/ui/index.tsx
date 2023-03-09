@@ -1,14 +1,21 @@
 import { useMemo, useState } from 'react'
 
 import { LineChart } from '../../../features/line-chart'
+import { useGetTransactionsQuery } from '../../../features/transactions'
 import { COLORS } from '../../../shared/common'
-import { Select, Typography } from '../../../shared/ui'
+import { useBoolean } from '../../../shared/hooks'
+import { Select, Skeleton, Typography } from '../../../shared/ui'
 import { DEFAULT_PERIOD, PERIOD_FILTERS_CONFIG, PeriodFilter } from '../config'
+import { getChartItems } from '../util'
 import style from './index.module.scss'
 
 export const WorkingCapital = () => {
     /* START - Get store values. */
+    const { data: transactions, isLoading: isTransactionsLoading } = useGetTransactionsQuery()
+
     const [selectedPeriod, setSelectedPeriod] = useState<PeriodFilter>(DEFAULT_PERIOD)
+    const { value: isIncomeDataVisisble, setTrue: showIncomeData, setFalse: hideIncomeData } = useBoolean(true)
+    const { value: isExpensesDataVisisble, setTrue: showExpensesData, setFalse: hideExpensesData } = useBoolean(true)
     /* END - Get store values. */
 
     /* START - Tracking side-effects. */
@@ -21,6 +28,19 @@ export const WorkingCapital = () => {
         [],
     )
 
+    const incomeChartItems = useMemo(
+        () => getChartItems(transactions?.income, 'income', COLORS.primary50),
+        [transactions?.income],
+    )
+    const expensesChartItems = useMemo(
+        () => getChartItems(transactions?.expenses, 'expenses', COLORS.secondary50),
+        [transactions?.expenses],
+    )
+
+    if (isTransactionsLoading) {
+        return <Skeleton height={'286px'} width={'100%'} borderRadius={'12px'} />
+    }
+
     return (
         <div className={style.wrapper}>
             <div className={style.header}>
@@ -30,7 +50,12 @@ export const WorkingCapital = () => {
 
                 <div className={style.filters}>
                     <div className={style.category}>
-                        <div className={style.category_item}>
+                        <div
+                            className={`${style.category_item} ${
+                                !isIncomeDataVisisble ? style.category_item__inactive : ''
+                            }`}
+                            onClick={isIncomeDataVisisble ? hideIncomeData : showIncomeData}
+                        >
                             <div className={style.category_color} style={{ backgroundColor: COLORS.secondary50 }} />
 
                             <Typography type={'caption'} color={'darkblue'}>
@@ -38,7 +63,12 @@ export const WorkingCapital = () => {
                             </Typography>
                         </div>
 
-                        <div className={style.category_item}>
+                        <div
+                            className={`${style.category_item} ${
+                                !isExpensesDataVisisble ? style.category_item__inactive : ''
+                            }`}
+                            onClick={isExpensesDataVisisble ? hideExpensesData : showExpensesData}
+                        >
                             <div className={style.category_color} style={{ backgroundColor: COLORS.primary50 }} />
 
                             <Typography type={'caption'} color={'darkblue'}>
@@ -59,32 +89,24 @@ export const WorkingCapital = () => {
                 </div>
             </div>
 
-            <div className={style.lineChart}>
-                <LineChart
-                    items={[
-                        {
-                            id: 'fake corp. A',
-                            color: COLORS.primary50,
-                            data: [
-                                { x: '2018-01-01', y: 7 },
-                                { x: '2018-01-02', y: 5 },
-                                { x: '2018-01-03', y: 11 },
-                                { x: '2018-01-04', y: 9 },
-                            ],
-                        },
-                        {
-                            id: 'fake corp. B',
-                            color: COLORS.secondary50,
-                            data: [
-                                { x: '2018-01-04', y: 14 },
-                                { x: '2018-01-05', y: 14 },
-                                { x: '2018-01-06', y: 15 },
-                                { x: '2018-01-07', y: 11 },
-                            ],
-                        },
-                    ]}
-                />
-            </div>
+            {incomeChartItems && expensesChartItems ? (
+                <div className={style.lineChart}>
+                    <LineChart
+                        items={
+                            isIncomeDataVisisble && isExpensesDataVisisble
+                                ? [{ ...incomeChartItems }, { ...expensesChartItems }]
+                                : isIncomeDataVisisble
+                                ? [{ ...incomeChartItems }]
+                                : [{ ...expensesChartItems }]
+                        }
+                        bottomTickValues={
+                            incomeChartItems.data.length > expensesChartItems.data.length
+                                ? incomeChartItems.data.length - 1
+                                : expensesChartItems.data.length - 1
+                        }
+                    />
+                </div>
+            ) : null}
         </div>
     )
 }

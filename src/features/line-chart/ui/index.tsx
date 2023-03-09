@@ -15,9 +15,10 @@ interface ILineChartItem {
 
 interface ILineChartProps {
     items: Array<ILineChartItem>
+    bottomTickValues: number
 }
 
-export const LineChart: FC<ILineChartProps> = ({ items }) => {
+export const LineChart: FC<ILineChartProps> = ({ items, bottomTickValues }) => {
     /* START - Get store values. */
     /* END - Get store values. */
 
@@ -48,6 +49,7 @@ export const LineChart: FC<ILineChartProps> = ({ items }) => {
                 format: (value) => getAmountInRubles(Number(value), 0),
                 tickSize: 0,
                 tickPadding: 14,
+                tickValues: 5,
             }}
             axisBottom={{
                 format: (date: Date) => {
@@ -56,8 +58,9 @@ export const LineChart: FC<ILineChartProps> = ({ items }) => {
                         day: 'numeric',
                     })
                 },
-                tickValues: 7,
-                legendOffset: -12,
+                tickSize: 0,
+                tickPadding: 14,
+                tickValues: bottomTickValues,
             }}
             curve={'monotoneX'}
             colors={colors}

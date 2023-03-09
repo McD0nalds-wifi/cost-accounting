@@ -1,5 +1,5 @@
 import { routes } from '../../shared/common'
-import { Select, Typography } from '../../shared/ui'
+import { Typography } from '../../shared/ui'
 import { MoneyInfo } from '../../widgets/money-info'
 import { RecentTransactions } from '../../widgets/recent-transactions'
 import { WorkingCapital } from '../../widgets/working-capital'
@@ -12,7 +12,7 @@ const Main = () => {
             </Typography>
 
             <div style={{ marginTop: '40px', display: 'flex', gap: '40px' }}>
-                <div style={{ width: '100%' }}>
+                <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '30px' }}>
                     <MoneyInfo />
 
                     <WorkingCapital />
