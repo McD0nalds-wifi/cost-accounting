@@ -1,4 +1,26 @@
 import { TransactionCategoryType } from '../../features/transactions'
+import {
+    AcademicCapIcon,
+    AirplaneIcon,
+    BillCheckIcon,
+    BillIcon,
+    BoxIcon,
+    BusIcon,
+    CarIcon,
+    CardSendIcon,
+    CardTransferIcon,
+    CartIcon,
+    CashOutIcon,
+    DonutBittenIcon,
+    DumbbellSmallIcon,
+    GamepadIcon,
+    HangerIcon,
+    LightbulbBoltIcon,
+    PillsIcon,
+    ReceiptTextIcon,
+    SmartphoneIcon,
+    SofaIcon,
+} from '../ui/icons'
 
 export const getAmountInRubles = (amount: number, minimumFractionDigits = 2): string => {
     return `${Number(amount).toLocaleString('ru-RU', {
@@ -6,48 +28,108 @@ export const getAmountInRubles = (amount: number, minimumFractionDigits = 2): st
     })} ₽`
 }
 
-export const getTitleByCategoryName = (category: TransactionCategoryType): string => {
+export const getCategoryDataByName = (category: TransactionCategoryType) => {
     switch (category) {
         case 'clothing_and_accessories':
-            return 'Одежда и аксессуары'
+            return {
+                title: 'Одежда и аксессуары',
+                icon: HangerIcon,
+            }
         case 'restaurants_and_cafes':
-            return 'Рестораны и кафе'
+            return {
+                title: 'Рестораны и кафе',
+                icon: DonutBittenIcon,
+            }
         case 'sporting_goods':
-            return 'Спортивные товары'
+            return {
+                title: 'Спортивные товары',
+                icon: DumbbellSmallIcon,
+            }
         case 'supermarkets':
-            return 'Супермаркеты'
+            return {
+                title: 'Супермаркеты',
+                icon: CartIcon,
+            }
         case 'health_and_beauty':
-            return 'Здоровье и красота'
+            return {
+                title: 'Здоровье и красота',
+                icon: PillsIcon,
+            }
         case 'everything_for_home':
-            return 'Все для дома'
+            return {
+                title: 'Все для дома',
+                icon: SofaIcon,
+            }
         case 'hcs':
-            return 'ЖКХ'
+            return {
+                title: 'ЖКХ',
+                icon: LightbulbBoltIcon,
+            }
         case 'internet':
-            return 'Связь, интернет'
+            return {
+                title: 'Связь, интернет',
+                icon: SmartphoneIcon,
+            }
         case 'car':
-            return 'Автомобиль'
+            return {
+                title: 'Автомобиль',
+                icon: CarIcon,
+            }
         case 'subscriptions':
-            return 'Подписки'
+            return {
+                title: 'Подписки',
+                icon: BillCheckIcon,
+            }
         case 'transfers':
-            return 'Переводы'
+            return {
+                title: 'Переводы',
+                icon: CardTransferIcon,
+            }
         case 'cash_withdrawal':
-            return 'Снятие наличных'
+            return {
+                title: 'Снятие наличных',
+                icon: CashOutIcon,
+            }
         case 'entertainment_and_hobbies':
-            return 'Развлечения и хобби'
+            return {
+                title: 'Развлечения и хобби',
+                icon: GamepadIcon,
+            }
         case 'logistics':
-            return 'Логистика'
+            return {
+                title: 'Логистика',
+                icon: BoxIcon,
+            }
         case 'transport':
-            return 'Транспорт'
+            return {
+                title: 'Транспорт',
+                icon: BusIcon,
+            }
         case 'education':
-            return 'Образование'
+            return {
+                title: 'Образование',
+                icon: AcademicCapIcon,
+            }
         case 'journeys':
-            return 'Путешествия'
+            return {
+                title: 'Путешествия',
+                icon: AirplaneIcon,
+            }
         case 'taxes':
-            return 'Налоги, штрафы, взыскания'
+            return {
+                title: 'Налоги, штрафы, взыскания',
+                icon: BillIcon,
+            }
         case 'salary':
-            return 'Зарплата'
+            return {
+                title: 'Зарплата',
+                icon: CardSendIcon,
+            }
         case 'other_expenses':
         default:
-            return 'Прочие расходы'
+            return {
+                title: 'Прочие расходы',
+                icon: ReceiptTextIcon,
+            }
     }
 }

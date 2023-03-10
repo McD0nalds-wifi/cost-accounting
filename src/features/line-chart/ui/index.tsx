@@ -7,7 +7,7 @@ import { getAmountInRubles } from '../../../shared/common/util'
 import Typography from '../../../shared/ui/typography'
 import style from './index.module.scss'
 
-interface ILineChartItem {
+export interface ILineChartItem {
     id: string
     color: string
     data: Array<{ x: string | number | Date; y: string | number | Date }>

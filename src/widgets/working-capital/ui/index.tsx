@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 
-import { LineChart } from '../../../features/line-chart'
+import { EmptyState } from '../../../entities/empty-state'
+import { ILineChartItem, LineChart } from '../../../features/line-chart'
 import { useGetTransactionsQuery } from '../../../features/transactions'
 import { COLORS } from '../../../shared/common'
 import { useBoolean } from '../../../shared/hooks'
@@ -36,6 +37,37 @@ export const WorkingCapital = () => {
         () => getChartItems(transactions?.expenses, 'expenses', COLORS.secondary50),
         [transactions?.expenses],
     )
+
+    const lineChartItems = useMemo((): Array<ILineChartItem> | null => {
+        if (!incomeChartItems || !expensesChartItems) {
+            return null
+        }
+
+        if (isIncomeDataVisisble && isExpensesDataVisisble) {
+            return [{ ...incomeChartItems }, { ...expensesChartItems }]
+        }
+
+        if (isIncomeDataVisisble) {
+            return [{ ...incomeChartItems }]
+        }
+
+        if (isExpensesDataVisisble) {
+            return [{ ...expensesChartItems }]
+        }
+
+        return []
+    }, [expensesChartItems, incomeChartItems, isExpensesDataVisisble, isIncomeDataVisisble])
+
+    const bottomTickValues = useMemo(() => {
+        if (!incomeChartItems || !expensesChartItems) {
+            return 1
+        }
+        if (incomeChartItems.data.length > expensesChartItems.data.length) {
+            return incomeChartItems.data.length - 1
+        }
+
+        return expensesChartItems.data.length - 1
+    }, [expensesChartItems, incomeChartItems])
 
     if (isTransactionsLoading) {
         return <Skeleton height={'286px'} width={'100%'} borderRadius={'12px'} />
@@ -89,22 +121,13 @@ export const WorkingCapital = () => {
                 </div>
             </div>
 
-            {incomeChartItems && expensesChartItems ? (
+            {lineChartItems ? (
                 <div className={style.lineChart}>
-                    <LineChart
-                        items={
-                            isIncomeDataVisisble && isExpensesDataVisisble
-                                ? [{ ...incomeChartItems }, { ...expensesChartItems }]
-                                : isIncomeDataVisisble
-                                ? [{ ...incomeChartItems }]
-                                : [{ ...expensesChartItems }]
-                        }
-                        bottomTickValues={
-                            incomeChartItems.data.length > expensesChartItems.data.length
-                                ? incomeChartItems.data.length - 1
-                                : expensesChartItems.data.length - 1
-                        }
-                    />
+                    {lineChartItems.length > 0 ? (
+                        <LineChart items={lineChartItems} bottomTickValues={bottomTickValues} />
+                    ) : (
+                        <EmptyState title={'Ничего не найдено'} />
+                    )}
                 </div>
             ) : null}
         </div>
