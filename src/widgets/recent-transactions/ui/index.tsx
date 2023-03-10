@@ -1,11 +1,23 @@
+import { format } from 'date-fns'
+import ruLocale from 'date-fns/locale/ru'
+
 import { NameCell } from '../../../entities/table-elements'
-import { getAmountInRubles } from '../../../shared/common/util'
+import { useGetTransactionsQuery } from '../../../features/transactions'
+import { getAmountInRubles, getTitleByCategoryName } from '../../../shared/common/util'
 import { Button, Table, Typography } from '../../../shared/ui'
 import { ChevronRightIcon, GasStationIcon } from '../../../shared/ui/icons'
 import style from './index.module.scss'
 
+const tableColumns = [
+    { id: 'name', title: 'Название', maxWidth: 240 },
+    { id: 'type', title: 'Тип' },
+    { id: 'amount', title: 'Сумма' },
+    { id: 'date', title: 'Дата' },
+]
+
 export const RecentTransactions = () => {
     /* START - Get store values. */
+    const { data: transactions } = useGetTransactionsQuery()
     /* END - Get store values. */
 
     /* START - Tracking side-effects. */
@@ -25,40 +37,34 @@ export const RecentTransactions = () => {
                 </Button>
             </div>
 
-            <div style={{ marginTop: '30px' }}>
-                <Table
-                    columns={[
-                        { id: 'name', title: 'Название', maxWidth: 240 },
-                        { id: 'type', title: 'Тип' },
-                        { id: 'amount', title: 'Сумма' },
-                        { id: 'date', title: 'Дата' },
-                    ]}
-                    dataSource={[
-                        {
-                            name: <NameCell title={'Оплата подписки'} subtitle={'Apple. Inc'} icon={GasStationIcon} />,
-                            type: (
-                                <Typography color={'darkGrayishBlue04'} type={'body2'} fontWeight={'600'}>
-                                    Заправка
-                                </Typography>
-                            ),
-                            amount: (
-                                <Typography color={'darkblue'} type={'body2'} fontWeight={'600'}>
-                                    {getAmountInRubles(420)}
-                                </Typography>
-                            ),
-                            date: (
-                                <Typography color={'darkblue'} type={'body2'} fontWeight={'600'}>
-                                    {Number(420.84).toLocaleString('ru-RU', {
-                                        minimumFractionDigits: 2,
-                                    })}{' '}
-                                    ₽
-                                </Typography>
-                            ),
-                        },
-                        { name: 'Покупка колбасы', type: 'Продукты' },
-                        { name: 'Заказ цветов', type: 'Прочее' },
-                    ]}
-                />
+            <div className={style.table}>
+                {transactions && (
+                    <Table
+                        columns={tableColumns}
+                        dataSource={transactions.expenses
+                            .slice(0, 3)
+                            .map(({ amount, business, category, date, name }) => ({
+                                name: <NameCell title={name} subtitle={business} icon={GasStationIcon} />,
+                                type: (
+                                    <Typography color={'darkGrayishBlue04'} type={'body2'}>
+                                        {getTitleByCategoryName(category)}
+                                    </Typography>
+                                ),
+                                amount: (
+                                    <Typography color={'darkblue'} type={'body2'} fontWeight={'600'}>
+                                        {getAmountInRubles(amount)}
+                                    </Typography>
+                                ),
+                                date: (
+                                    <Typography color={'darkGrayishBlue04'} type={'body2'}>
+                                        {format(date, 'dd MMM yyyy', {
+                                            locale: ruLocale,
+                                        })}
+                                    </Typography>
+                                ),
+                            }))}
+                    />
+                )}
             </div>
         </div>
     )
