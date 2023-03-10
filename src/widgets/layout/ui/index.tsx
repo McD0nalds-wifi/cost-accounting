@@ -1,6 +1,7 @@
 import { FC, ReactNode } from 'react'
 
 import { Sidebar } from '../../../entities/sidebar'
+import { Header } from '../../header'
 import style from './index.module.scss'
 
 interface ILayoutProps {
@@ -20,7 +21,11 @@ export const Layout: FC<ILayoutProps> = ({ children }) => {
         <div className={style.wrapper}>
             <Sidebar />
 
-            <div className={style.content}>{children}</div>
+            <div className={style.content}>
+                <Header />
+
+                {children}
+            </div>
         </div>
     )
 }

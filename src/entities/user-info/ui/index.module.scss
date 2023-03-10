@@ -1,0 +1,38 @@
+@import '../../../app/styles/variables.scss';
+
+.conteiner {
+    position: relative;
+}
+
+.wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 6px 18px 6px 6px;
+    background-color: $lightgray02;
+    border-radius: 50px;
+}
+
+.avatar {
+    height: 36px;
+    width: 36px;
+    border-radius: 50%;
+    background-color: $primary50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.username {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    color: $darkblue;
+    user-select: none;
+    transition: 0.2s color;
+    cursor: pointer;
+
+    &:hover {
+        color: $darkModerateBlue;
+    }
+}
