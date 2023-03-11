@@ -1,0 +1,59 @@
+@import '../../../app/styles/variables.scss';
+
+.wrapper {
+    @media (max-width: 1320px) {
+        border: 1px solid $lightgray01;
+        border-radius: 12px;
+        padding: 24px;
+    }
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.transfers {
+    margin-top: 32px;
+}
+
+.transfer {
+    display: flex;
+    align-items: center;
+    padding: 14px 0px;
+    border-bottom: 1px solid $lightgray02;
+
+    &:first-child {
+        padding: 0px 0px 14px 0px;
+    }
+
+    &:last-child {
+        padding: 14px 0px 0px 0px;
+        border-bottom: none;
+    }
+
+    // transfer_avatar
+    &_avatar {
+        height: 32px;
+        width: 32px;
+        border-radius: 50%;
+        background-color: #e4f1ff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    // transfer_info
+    &_info {
+        margin-left: 14px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    // transfer_amount
+    &_amount {
+        margin-left: auto;
+    }
+}

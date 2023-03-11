@@ -20,6 +20,7 @@ interface IButtonProps {
     isLoading?: boolean
     isDisabled?: boolean
     isBlock?: boolean
+    isNoWrap?: boolean
     startIcon?: (props: IIconProps) => JSX.Element
     endIcon?: (props: IIconProps) => JSX.Element
     onClick?: () => void
@@ -33,6 +34,7 @@ const Button = ({
     isLoading = false,
     isDisabled = false,
     isBlock = false,
+    isNoWrap = false,
     startIcon,
     endIcon,
     onClick,
@@ -52,7 +54,7 @@ const Button = ({
     return (
         <button
             className={buttonClass}
-            style={{ width: isBlock ? '100%' : 'fit-content' }}
+            style={{ width: isBlock ? '100%' : 'fit-content', whiteSpace: isNoWrap ? 'nowrap' : 'normal' }}
             type={htmlType}
             disabled={isDisabled}
             onClick={onClick}
